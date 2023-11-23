@@ -2,26 +2,31 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        private const val CAMERA_PERMISSION_REQUEST_CODE = 100
-    }
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        findViewById<View>(R.id.chatButton).setOnClickListener {
-            openChatActivity()
+        binding.addClass.setOnClickListener {
+
         }
-    }
 
-    private fun openChatActivity() {
-        val intent = Intent(this, ChatActivity::class.java)
-        startActivity(intent)
+        binding.chatButton.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.aiButton.setOnClickListener {
+            val intent = Intent(this, AiActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

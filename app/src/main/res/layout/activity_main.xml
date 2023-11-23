@@ -1,33 +1,622 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/chatButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="30dp"
-        android:text="Start Chat"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="150dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/addClass"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="startChat" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="인천대학교"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="UniChat"
+                android:textSize="34sp" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnOpenCamera"
+        android:id="@+id/addClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="openCamera"
-        android:text="Open Camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="24dp"
+        android:text="추가"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/gridlayout_timetable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridLayout
+        android:id="@+id/gridlayout_timetable"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:columnCount="6"
+        android:orientation="horizontal"
+        android:rowCount="15"
+        app:layout_constraintBottom_toTopOf="@+id/flow"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:layout_rowWeight="0.5"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="월" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="화" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="수" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="목" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="금" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="09:00" />
+
+        <TextView
+            android:id="@+id/monday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0900"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="10:00" />
+
+        <TextView
+            android:id="@+id/monday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1000"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="11:00" />
+
+        <TextView
+            android:id="@+id/monday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1100"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="12:00" />
+
+        <TextView
+            android:id="@+id/monday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1200"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="13:00" />
+
+        <TextView
+            android:id="@+id/monday1300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1300"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="14:00" />
+
+        <TextView
+            android:id="@+id/monday1400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1400"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="15:00" />
+
+        <TextView
+            android:id="@+id/monday1500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1500"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="16:00" />
+
+        <TextView
+            android:id="@+id/monday1600"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1600"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1600"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1600"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1600"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1600"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1600"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1600"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1600"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1600"
+            android:text="" />
+
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="17:00" />
+
+        <TextView
+            android:id="@+id/monday1700"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1700"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1700"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1700"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1700"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1700"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1700"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1700"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1700"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1700"
+            android:text="" />
+    </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="홈" />
+
+        <Button
+            android:id="@+id/chatButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="유니챗" />
+
+        <Button
+            android:id="@+id/aiButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:layout_weight="1"
+            android:text="건물 정보" />
+
+        <Button
+            android:id="@+id/tmpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="임시" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        app:constraint_referenced_ids="button15,button16,button17,button18"
+        app:flow_horizontalStyle="spread"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:drawable/ic_menu_compass"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:drawable/btn_star"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:drawable/ic_lock_idle_lock"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="?attr/actionModePasteDrawable"
+        android:text="Button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

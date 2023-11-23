@@ -1,11 +1,13 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.databinding.ActivityChatBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -19,28 +21,38 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 class ChatActivity : AppCompatActivity() {
-
-    private lateinit var chatbotResponseTextView: TextView
+    private lateinit var binding: ActivityChatBinding
+    private lateinit var chatAdapter: ChatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+        binding = ActivityChatBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val sendButton = findViewById<Button>(R.id.sendButton)
         val inputEditText = findViewById<EditText>(R.id.inputEditText)
-        chatbotResponseTextView = findViewById<TextView>(R.id.chatbotResponseTextView)
+        chatAdapter = ChatAdapter()
+
+        val exitButton = findViewById<ImageButton>(R.id.btn_exit)
+
+        exitButton.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
         sendButton.setOnClickListener {
             val userInput = inputEditText.text.toString()
             if (userInput.isNotBlank()) {
+                chatAdapter.apply {
+                    addItem(MessageModel.SenderMessage(userInput))
+                }
                 SendMessageTask().execute(userInput)
                 inputEditText.text.clear()
+                binding.rvChatting.adapter = chatAdapter
             }
         }
     }
-
     inner class SendMessageTask : AsyncTask<String, Void, String>() {
-
+        private var chatBotMessage: String = ""
         override fun doInBackground(vararg params: String?): String {
             val userInput = params[0]
             return sendMessageToChatbot(userInput)
@@ -58,21 +70,27 @@ class ChatActivity : AppCompatActivity() {
 
                         if (data != null) {
                             val description = data.optString("description")
-                            chatbotResponseTextView.text = description ?: "No description found."
+                            chatAdapter.apply {
+                            }
+                            chatBotMessage = description ?: "No description found."
                         } else {
-                            chatbotResponseTextView.text = "No 'data' field found in the first bubble."
+                            chatBotMessage = "No 'data' field found in the first bubble."
                         }
                     } else {
-                        chatbotResponseTextView.text = "No bubbles found in the response."
+                        chatBotMessage = "No bubbles found in the response."
                     }
                 } else {
-                    chatbotResponseTextView.text = "Empty response."
+                    chatBotMessage = "Empty response."
                 }
             } catch (e: Exception) {
-                chatbotResponseTextView.text = "Error extracting description."
+                chatBotMessage = "Error extracting description."
+            }
+            chatAdapter.apply {
+                addItem(MessageModel.ReceiverMessage(chatBotMessage))
             }
         }
     }
+
 
     private fun sendMessageToChatbot(userInput: String?): String {
         if (userInput.isNullOrBlank()) {
@@ -114,14 +132,11 @@ class ChatActivity : AppCompatActivity() {
 
     private fun makeSignature(secretKey: String, timestamp: String, message: String): String {
         var encodeBase64String = ""
-
         try {
             val secreteKeyBytes = secretKey.toByteArray(StandardCharsets.UTF_8)
-
             val signingKey = SecretKeySpec(secreteKeyBytes, "HmacSHA256")
             val mac = Mac.getInstance("HmacSHA256")
             mac.init(signingKey)
-
             val rawHmac = mac.doFinal(message.toByteArray(StandardCharsets.UTF_8))
             encodeBase64String = Base64.getEncoder().encodeToString(rawHmac)
         } catch (e: NoSuchAlgorithmException) {
@@ -131,7 +146,6 @@ class ChatActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         return encodeBase64String
     }
 }
